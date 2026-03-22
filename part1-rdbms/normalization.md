@@ -19,7 +19,7 @@ Similarly, if the only order of a customer is deleted, their entire information 
 
 
 
-### Normalization Justification
+## Normalization Justification
 
 Putting everything in one table sounds easy at first, but it causes a lot of problems as the data grows. In this orders dataset, customer details, product info, and sales rep data are all mixed together in the same rows, which creates unnecessary repetition.
 For example, "Neha Gupta" (customer_id C006) shows up in multiple orders like ORD1153, ORD1118, and ORD1083. If her email or city changes, you have to go and update every single row she appears in. If you miss even one row, the data becomes wrong and unreliable. Same thing with "Pen Set" (product_id P007) — it appears in many orders, so changing its price means updating many rows instead of just one.
