@@ -1,0 +1,7 @@
+## ETL Decisions
+### Decision 1 — Date Standardization
+The raw dataset had dates written in different formats — some entries used DD-MM-YYYY while others used MM/DD/YYYY. This made it really hard to do any kind of time-based analysis because the system couldn't treat them the same way. To fix this, all dates were converted into a single standard format — YYYY-MM-DD — and stored in the dim_date table. Now grouping data by month or year works cleanly without any confusion.
+### Decision 2 — Category Normalization
+Product categories were spelled the same way but written differently across records — for example, "electronics", "Electronics", and "ELECTRONICS" were all being treated as separate categories. This caused incorrect totals when grouping or aggregating data. To resolve this, all category values were cleaned up and written in a consistent format like "Electronics", "Clothing", and "Groceries" before being loaded into the dim_product table.
+### Decision 3 — Handling Missing Values
+Some records had missing information in important fields like product category or revenue. Leaving these gaps in the data would have thrown off the analysis and led to unreliable results. So each record was checked carefully — missing values were either filled in with a suitable default or the record was removed entirely if it couldn't be fixed. Only complete and valid records were loaded into the fact table, keeping the final data clean and ready for accurate reporting.
