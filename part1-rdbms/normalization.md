@@ -2,13 +2,16 @@
 
 ### Insert Anomaly
 
-In the current table structure, it is not possible to insert a new product without creating an order. For example, if a new product (product_id, product_name, category, unit_price) needs to be added but no customer has ordered it yet, there is no way to store this information because order_id and customer details are mandatory. This leads to incomplete data insertion.
+In the current table, it is not possible to insert a new product without creating an order. For example, product_id P008 (a new product) cannot be added unless an order_id, customer_id, and other order-related fields are also provided. Since product information (product_id, product_name, category, unit_price) is tightly coupled with order data, new products cannot exist independently in the system.
 
 ### Update Anomaly
 
-Customer and product details are repeated across multiple rows. For example, if a customer’s city (customer_city) or email (customer_email) changes, it must be updated in all rows where that customer appears. If one row is missed, it results in inconsistent data. Similarly, changes in product price (unit_price) must be updated across all related rows.
+There is significant redundancy in the dataset. For example, the customer "Neha Gupta" (customer_id C006) appears in multiple rows such as ORD1153, ORD1118, and ORD1083. If her email or city changes, it must be updated in all these rows. Missing even one row would result in inconsistent data.
+
+Similarly, the product "Pen Set" (product_id P007) appears in multiple orders such as ORD1114, ORD1153, ORD1118, ORD1132, ORD1037, and ORD1083. If the unit_price changes from 250 to another value, it must be updated across all these rows, increasing the risk of inconsistency.
 
 ### Delete Anomaly
 
-If a row corresponding to an order is deleted, important information may be lost. For example, if a product was ordered only once and that row is deleted, all information about that product (product_id, product_name, category, unit_price) is lost. Similarly, deleting the only order of a customer removes all their details from the database.
+Deleting a single row can result in loss of important information. For example, if the row ORD1075 is deleted, all information about the product "Desk Chair" (product_id P003) is lost if it does not appear in any other row. This results in unintended data loss.
 
+Similarly, if the only order of a customer is deleted, their entire information (customer_id, customer_name, customer_email, customer_city) is also removed from the database.
