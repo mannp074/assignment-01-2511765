@@ -58,6 +58,7 @@ INSERT INTO products VALUES
 ('P005', 'Headphones', 'Electronics', 3200),
 ('P006', 'Standing Desk', 'Furniture', 22000),
 ('P007', 'Pen Set', 'Stationery', 250);
+('P999', 'Test Product', 'Test', 100);
 
 INSERT INTO sales_reps VALUES
 ('SR01', 'Deepak Joshi', 'deepak@corp.com', 'Mumbai HQ, Nariman Point, Mumbai - 400021'),
